@@ -1,10 +1,26 @@
-// https: //leetcode.com/problems/two-sum/
-
 #include <iostream>
 #include <vector>
+#include <unordered_map>
 using namespace std;
 
-// 0(n^2)
+// HELPER
+void printHashMap(unordered_map<int, int> hashmap)
+{
+	for (const auto &n : hashmap)
+	{
+		std::cout << "Key:[" << n.first << "] Value:[" << n.second << "]\n";
+	}
+}
+
+void printVector(vector<int> const &a)
+{
+	cout << "The vector elements are : ";
+
+	for (int i = 0; i < a.size(); i++)
+		cout << a.at(i) << ' ';
+}
+
+// 0(n^2) time - O(1) space
 vector<int> twoSumBruteForce(vector<int> &nums, int target)
 {
 	const int size = nums.size();
@@ -16,8 +32,9 @@ vector<int> twoSumBruteForce(vector<int> &nums, int target)
 		{
 			if (nums[i] + nums[j] == target)
 			{
-				indices.push_back(i);
-				indices.push_back(j);
+				// indices.push_back(i);
+				// indices.push_back(j);
+				indices = {i, j};
 			}
 		}
 	}
@@ -25,20 +42,34 @@ vector<int> twoSumBruteForce(vector<int> &nums, int target)
 	return indices;
 }
 
-// HELPER
-void print(vector<int> const &a)
+// O(n) time - O(n) space
+vector<int> twoSumOnePassHashtable(vector<int> nums, int target)
 {
-	cout << "The vector elements are : ";
+	vector<int> indices;
+	unordered_map<int, int> numsHashtable; //num & index
 
-	for (int i = 0; i < a.size(); i++)
-		cout << a.at(i) << ' ';
+	for (int i = 0; i < nums.size(); ++i)
+	{
+		int complement = target - nums[i];
+
+		if (numsHashtable.find(complement) != numsHashtable.end())
+		{
+			indices = {numsHashtable[complement], i};
+			return indices;
+		}
+
+		// numsHashtable.insert({nums[i], i});
+		numsHashtable[nums[i]] = i;
+	}
+
+	return indices;
 }
 
 int main()
 {
-	vector<int> nums{2, 3, 7, 11, 15};
-	int target = 9;
+	vector<int> nums{3, 3, 4};
+	int target = 61;
 
-	vector<int> result = twoSumBruteForce(nums, target);
-	print(result);
+	vector<int> result = twoSumOnePassHashtable(nums, target);
+	printVector(result);
 }
