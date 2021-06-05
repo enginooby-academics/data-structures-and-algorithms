@@ -103,7 +103,6 @@ class TwoSum {
                 int[] indices;
                 var nums_hash = new System.Collections.Generic.Dictionary<int, int>(); // num & index
 
-                // generate dictionary from array
                 for (int i = 0; i < size; i++) {
                         int num = nums[i];
                         int complement = target - num;
