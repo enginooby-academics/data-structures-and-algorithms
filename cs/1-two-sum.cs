@@ -3,9 +3,9 @@ class TwoSum {
         static void Main(string[] args) {
                 // int[] nums = new int[5] { 2, 5, 46, 14, 9 };
                 int[] nums = new int[2] { 3, 3 };
-                int target = 11;
+                int target = 6;
 
-                int[] result = TwoSumTwoPassHashtable(nums, target);
+                int[] result = TwoSumOnePassDictionary(nums, target);
                 Array.ForEach(result, Console.WriteLine);
         }
 
@@ -91,6 +91,32 @@ class TwoSum {
                         if (nums_hash.ContainsKey(complement) && nums_hash[complement] != nums_hash[num]) {
                                 indices = new int[2] { nums_hash[num], nums_hash[complement] };
                                 return indices;
+                        }
+                }
+
+                throw new ArgumentException("Not found");
+        }
+
+        // O(n) time & space
+        public static int[] TwoSumOnePassDictionary(int[] nums, int target) {
+                int size = nums.Length;
+                int[] indices;
+                var nums_hash = new System.Collections.Generic.Dictionary<int, int>(); // num & index
+
+                // generate dictionary from array
+                for (int i = 0; i < size; i++) {
+                        int num = nums[i];
+                        int complement = target - num;
+
+                        // find the complement
+                        if (nums_hash.ContainsKey(complement)) {
+                                indices = new int[2] { nums_hash[complement], i };
+                                return indices;
+                        }
+
+                        // we can ignore the duplicated key since the complement of one is not found
+                        if (!nums_hash.ContainsKey(num)) {
+                                nums_hash.Add(num, i);
                         }
                 }
 
