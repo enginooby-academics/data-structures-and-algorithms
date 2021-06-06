@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 
+// custom defined list node
 public class ListNode {
         public int val;
         public ListNode next;
@@ -29,7 +31,7 @@ public class AddTwoNumbersLinkedList {
                 ListNode currentHead3 = dummyHead;
                 int carry = 0;
 
-                // reach both ends of lists or case: extra carry of one at the end
+                // case: not reach both ends of lists & case: extra carry of '1' at the end
                 while (currentHead1 != null || currentHead2 != null || carry == 1) {
                         int x = (currentHead1 != null) ? currentHead1.val : 0;
                         int y = (currentHead2 != null) ? currentHead2.val : 0;
@@ -45,12 +47,58 @@ public class AddTwoNumbersLinkedList {
 
                 return dummyHead.next;
         }
+
+
+        public static LinkedList<int> AddTwoNumbersBuiltIn(LinkedList<int> l1, LinkedList<int> l2) {
+                var result = new LinkedList<int>();
+                LinkedListNode<int> currentHead1 = l1.First;
+                LinkedListNode<int> currentHead2 = l2.First;
+                int carry = 0;
+
+                // case: not reach both ends of lists & case: extra carry of '1' at the end
+                while (currentHead1 is not null || currentHead2 is not null || carry == 1) {
+                        int x = (currentHead1 is not null) ? currentHead1.Value : 0;
+                        int y = (currentHead2 is not null) ? currentHead2.Value : 0;
+                        int sum = x + y + carry;
+                        carry = sum / 10;
+                        result.AddLast(sum % 10);
+
+                        currentHead1 = currentHead1?.Next;
+                        currentHead2 = currentHead2?.Next;
+                }
+
+                return result;
+        }
+
         static void Main(string[] args) {
+                // TestCustomLinkedList();
+                TestBuilInLinkedList();
+        }
+
+        private static void TestCustomLinkedList() {
                 ListNode l1 = new ListNode(2, new ListNode(9, new ListNode(9)));
                 ListNode l2 = new ListNode(9, null);
 
                 l1.Print();
                 l2.Print();
                 AddTwoNumbers(l1, l2).Print();
+        }
+
+        private static void TestBuilInLinkedList() {
+                int[] l1Array = { 2, 9, 9 };
+                var l1 = new LinkedList<int>(l1Array);
+                int[] l2Array = { 9 };
+                var l2 = new LinkedList<int>(l2Array);
+
+                PrintLinkedList<int>(AddTwoNumbersBuiltIn(l1, l2));
+        }
+
+        // HELPER
+        private static void PrintLinkedList<T>(LinkedList<T> list) {
+                foreach (T element in list) {
+                        Console.Write(element.ToString());
+                }
+
+                Console.WriteLine();
         }
 }
