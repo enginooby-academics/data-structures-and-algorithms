@@ -2,6 +2,7 @@ from typing import List
 
 
 def twoSumBruteForce(nums: List[int], target: int) -> List[int]:  # O(n^2) time
+
     SIZE = len(nums)
     indices = []
 
@@ -11,10 +12,24 @@ def twoSumBruteForce(nums: List[int], target: int) -> List[int]:  # O(n^2) time
                 indices.append(i)
                 indices.append(j)
 
-    return indices
+        return indices
 
 
-# test
-nums = [2, 5, 6, 8]
+def twoSumOnePassHashtable(nums: List[int], target: int) -> List[int]:
+    indices = [None] * 2
+    numsHashtable = {}
+
+    for i in range(len(nums)):
+        complement = target - nums[i]
+        if(complement in numsHashtable):
+            indices = [numsHashtable[complement], i]
+            return indices
+
+        numsHashtable[nums[i]] = i
+
+    return None
+
+    # test
+nums = [2, 4, 4, 7]
 target = 8
-print(twoSumBruteForce(nums, target))
+print(twoSumOnePassHashtable(nums, target))
