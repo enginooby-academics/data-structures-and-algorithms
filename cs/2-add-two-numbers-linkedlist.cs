@@ -24,7 +24,7 @@ public class ListNode {
 public class AddTwoNumbersLinkedList {
 
         // O(max(m,n)) time & space
-        public static ListNode AddTwoNumbers(ListNode l1, ListNode l2) {
+        public static ListNode AddTwoNumbersCustom(ListNode l1, ListNode l2) {
                 ListNode dummyHead = new ListNode(0);
                 ListNode currentHead1 = l1;
                 ListNode currentHead2 = l2;
@@ -40,6 +40,7 @@ public class AddTwoNumbersLinkedList {
                         carry = sum / 10;
                         currentHead3.next = new ListNode(sum % 10);
 
+                        //  advance heads
                         currentHead1 = currentHead1?.next;
                         currentHead2 = currentHead2?.next;
                         currentHead3 = currentHead3.next;
@@ -47,7 +48,6 @@ public class AddTwoNumbersLinkedList {
 
                 return dummyHead.next;
         }
-
 
         public static LinkedList<int> AddTwoNumbersBuiltIn(LinkedList<int> l1, LinkedList<int> l2) {
                 var result = new LinkedList<int>();
@@ -63,6 +63,7 @@ public class AddTwoNumbersLinkedList {
                         carry = sum / 10;
                         result.AddLast(sum % 10);
 
+                        //  advance heads
                         currentHead1 = currentHead1?.Next;
                         currentHead2 = currentHead2?.Next;
                 }
@@ -81,14 +82,12 @@ public class AddTwoNumbersLinkedList {
 
                 l1.Print();
                 l2.Print();
-                AddTwoNumbers(l1, l2).Print();
+                AddTwoNumbersCustom(l1, l2).Print();
         }
 
         private static void TestBuilInLinkedList() {
-                int[] l1Array = { 2, 9, 9 };
-                var l1 = new LinkedList<int>(l1Array);
-                int[] l2Array = { 9 };
-                var l2 = new LinkedList<int>(l2Array);
+                var l1 = new LinkedList<int>(new int[] { 2, 9, 9 });
+                var l2 = new LinkedList<int>(new int[] { 9 });
 
                 PrintLinkedList<int>(AddTwoNumbersBuiltIn(l1, l2));
         }
