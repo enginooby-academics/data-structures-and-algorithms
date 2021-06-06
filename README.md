@@ -3,7 +3,7 @@
 Code & run 😉
 
 ### C#
-1. Create new Class with ```static Main()``` for each problem
+1. Create new Class with ```static void Main(string[] args)``` for each problem
 2. Specify Class name to run program for ```<StartupObject>``` in *csharp.csproj*
 3. Terminal: ```dotnet  run -p cs```
 
@@ -13,3 +13,4 @@ Code & run 😉
 
 # Problems
 1. [Two Sum](https://leetcode.com/problems/two-sum/) -> Generalized: find x objects in y collections that have a certain relationship.
+2. [Add Two Numbers - LinkedList](https://leetcode.com/problems/add-two-numbers/)

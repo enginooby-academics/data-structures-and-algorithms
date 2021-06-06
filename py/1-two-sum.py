@@ -1,7 +1,7 @@
 from typing import List
 
 
-def twoSumBruteForce(nums: List[int], target: int) -> List[int]:  # O(n^2) time
+def twoSumBruteForce(nums: List[int], target: int) -> List[int]:  # O(n^2) time - O(1) space
 
     SIZE = len(nums)
     indices = []
@@ -15,7 +15,7 @@ def twoSumBruteForce(nums: List[int], target: int) -> List[int]:  # O(n^2) time
         return indices
 
 
-def twoSumOnePassHashtable(nums: List[int], target: int) -> List[int]:
+def twoSumOnePassHashtable(nums: List[int], target: int) -> List[int]:  # O(n) time & space
     indices = [None] * 2
     numsHashtable = {}
 
@@ -28,6 +28,7 @@ def twoSumOnePassHashtable(nums: List[int], target: int) -> List[int]:
         numsHashtable[nums[i]] = i
 
     return None
+
 
     # test
 nums = [2, 4, 4, 7]
