@@ -33,8 +33,8 @@ public class AddTwoNumbersLinkedList {
 
                 // case: not reach both ends of lists & case: extra carry of '1' at the end
                 while (currentHead1 != null || currentHead2 != null || carry == 1) {
-                        int x = (currentHead1 != null) ? currentHead1.val : 0;
-                        int y = (currentHead2 != null) ? currentHead2.val : 0;
+                        int x = currentHead1?.val ?? 0;
+                        int y = currentHead2?.val ?? 0;
                         int sum = x + y + carry;
 
                         carry = sum / 10;
@@ -57,8 +57,8 @@ public class AddTwoNumbersLinkedList {
 
                 // case: not reach both ends of lists & case: extra carry of '1' at the end
                 while (currentHead1 is not null || currentHead2 is not null || carry == 1) {
-                        int x = (currentHead1 is not null) ? currentHead1.Value : 0;
-                        int y = (currentHead2 is not null) ? currentHead2.Value : 0;
+                        int x = currentHead1?.Value ?? 0;
+                        int y = currentHead2?.Value ?? 0;
                         int sum = x + y + carry;
                         carry = sum / 10;
                         result.AddLast(sum % 10);
