@@ -14,3 +14,4 @@ Code & run 😉
 # Problems
 1. [Two Sum](https://leetcode.com/problems/two-sum/) -> Generalized: find x objects in y collections that have a certain relationship.
 2. [Add Two Numbers - LinkedList](https://leetcode.com/problems/add-two-numbers/)
+3. [Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/)
