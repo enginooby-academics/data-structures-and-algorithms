@@ -1,10 +1,11 @@
 using System;
+using System.Linq;
 
 public class Problem4 {
         static void Main(string[] args) {
-                // Console.WriteLine(Solution(1));
+                // Console.WriteLine(Solution(13434));
                 // Console.WriteLine(Solution(-124301));
-                // Console.WriteLine(Solution(-214743647));
+                // Console.WriteLine(Solution(-2147483647));
         }
 
         private static int MathSolution(int x) {    // O(log(n)) time & O(1)
@@ -21,5 +22,11 @@ public class Problem4 {
                 }
 
                 return (int)reverse;
+        }
+
+        private static int LinqSolution(int x) {
+                long[] reverseArray = Enumerable.Reverse(Math.Abs(x).ToString().Select(o => long.Parse(o.ToString()))).ToArray();
+                long result = reverseArray.Aggregate((result, x) => result * 10 + x);
+                return Math.Abs(result) > Int32.MaxValue ? 0 : (int)result * (x / Math.Abs(x));
         }
 }
